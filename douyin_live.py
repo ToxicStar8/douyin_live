@@ -27,7 +27,7 @@ from douyin_proto.douyin_pb2 import RoomUserSeqMessage
 from douyin_proto.douyin_pb2 import UpdateFanTicketMessage
 from douyin_proto.douyin_pb2 import CommonTextMessage
 from douyin_proto.douyin_pb2 import ProductChangeMessage
-import send2unity
+import send2server
 
 # 直播信息全局变量
 liveRoomId = ""
@@ -42,7 +42,7 @@ start_time = time.time()
 from config import SEND_URL
 def sender_msg(payload):
     print(f"推送直播消息:", {"msg":payload})
-    send2unity.add_pending_msg(payload)
+    send2server.add_pending_msg(payload)
     # response = requests.request("POST", SEND_URL, headers=headers, data={"msg":payload})
 
 
@@ -282,5 +282,5 @@ def start_live(url):
     # 直播间id
     liveRoomId = res_room.group(1)
     
-    send2unity.start_send_unity()
+    send2server.start_send_server()
     wssServerStart()

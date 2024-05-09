@@ -12,7 +12,7 @@ def add_pending_msg(msg):
 def clear_pending_msg():
     _pending_messages.clear()
 
-def send_msg2unity():
+def send_msg2server():
     if not _pending_messages:
         return
     
@@ -28,11 +28,11 @@ def _http_send():
     while True:
         time.sleep(1)
         try:
-            send_msg2unity()
+            send_msg2server()
         except Exception as e:
             print(f"=====================_http_send 线程错误！send_msg2unity")
 
-def start_send_unity():
+def start_send_server():
     print("====================start_send_unity")
     t = threading.Thread(target=_http_send)
     t.start()
