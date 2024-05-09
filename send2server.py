@@ -20,7 +20,7 @@ def send_msg2server():
         'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36",
         'Content-Type': 'application/json'
     }
-    print("====================send_msg2unity ",len(_pending_messages))
+    print("====================send_msg2server ",len(_pending_messages))
     requests.request("POST", SEND_URL, headers=headers, data={"msgs":_pending_messages})
     clear_pending_msg()
 
@@ -30,9 +30,9 @@ def _http_send():
         try:
             send_msg2server()
         except Exception as e:
-            print(f"=====================_http_send 线程错误！send_msg2unity")
+            print(f"=====================_http_send 线程错误！send_msg2server")
 
 def start_send_server():
-    print("====================start_send_unity")
+    print("====================start_send_server")
     t = threading.Thread(target=_http_send)
     t.start()
